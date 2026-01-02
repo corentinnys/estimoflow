@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TypeSeeder::class,
             PropertiesSeeder::class,
+            FeaturesSeeder::class,
 
         ]);
         // \App\Models\User::factory(10)->create();
