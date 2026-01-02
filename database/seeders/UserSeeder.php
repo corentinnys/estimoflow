@@ -10,7 +10,7 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-       
+
         // Utilisateurs fake
         User::factory(5)->create();
     }
