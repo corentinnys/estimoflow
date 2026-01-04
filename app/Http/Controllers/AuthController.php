@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use App\Http\Requests\RegisterRequest;
 
 class AuthController extends Controller
 {
@@ -24,6 +27,31 @@ class AuthController extends Controller
             'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }
+
+    public function register(RegisterRequest $request)
+    {
+        $firstName = $request->input('firstName');
+        $lastName = $request->input('lastName');
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $roleId = 1;
+
+
+
+       User::create([
+            'firstname'=> $firstName,
+            'lastname'=> $lastName,
+            'email'=> $email,
+            'password'=> Hash::make($password),
+            'picture'=>'test.png',
+            'role_id'=>$roleId
+       ]);
+         return response()->json([
+               'message' => 'Utilisateur créé avec succès',
+           ],201);
+    }
+
+
 
     public function me()
     {
